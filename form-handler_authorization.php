@@ -15,18 +15,16 @@ $hash = str_replace("\n","",$ps);
 //если такой пользователь есть
 if (count($data) == 1) {
 
-   // echo $exist; //сомнительное возвращение данных + долго гоняет данные
-    //проверяем пароль
-
     if (password_verify($passwd, $hash)) {
-        $exist = 1;
-        echo $exist;  //пароль прошел
+        session_start();//запустили сессию
+        $_SESSION['userid'] =$data[0]['id'];//сохраняем айди пользователя в сессию
+        $exist = 1;//пароль прошел
+
     } else {
-        $exist = 2;
-        echo $exist; //пароль не подошел
+        $exist = 2; //пароль не подошел
     }
 } //если такого пользователя нет
 else {
     $exist = 0;
-    echo $exist;
 }
+echo json_encode($exist);

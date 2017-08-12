@@ -29,8 +29,9 @@ $('#registration_button').on('click', function (e) {
                 login: login,
                 passwd : passwd
             }
-        }).success(function (data) {//ответ от формы
-            if (data == 1) {
+        }).done(function (data) {//ответ от формы
+            var answer = JSON.parse(data);
+            if (answer == 1) {
                 alert ('Такой пользователь уже есть, пожалуйста, выберите другой логин');
                 $("#registr_form").trigger('reset');
             }
@@ -66,18 +67,18 @@ $('#avtorization_button').on('click', function (e) {
                 login: login,
                 passwd : passwd
             }
-        }).success(function (data) {//ответ от формы
-            if (data == 1) {
+        }).done(function (data) {//ответ от формы
+            var answer = JSON.parse(data);
+            if (answer == 1) {
                 alert ('Вы успешно авторизировались');
                 $("#avtor_form").trigger('reset');
             }
-            else if (data == 0 ){
+            else if (answer == 0 ){
                 alert ("Такого пользователя нет!");
                 $("#avtor_form").trigger('reset');
             }
             else {
                 alert ("Пароль неверный!");
-
             }
         });
     }

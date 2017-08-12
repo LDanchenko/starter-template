@@ -20,14 +20,12 @@ $pass = password_hash($passwd, PASSWORD_BCRYPT, $options)."\n";
 
 if (count($data) == 0) {
     $stmt = $mysqli->stmt_init(); //начало подготовки запроса
-    $stmt->prepare('INSERT INTO users (login, password) 
-    VALUES ("' . $login . '", "' . $pass . '")'); //подготовка запроса а
+    $stmt->prepare('INSERT INTO users (login, password)  VALUES ("' . $login . '", "' . $pass . '")'); //подготовка запроса а
     $stmt->execute();//выполняем
     $exist = 0;
-    echo $exist;
 }
 //если такой пользователь уже есть
 else {
     $exist = 1;
-    echo $exist;
 }
+echo json_encode($exist);
