@@ -23,7 +23,7 @@ $('#registration_button').on('click', function (e) {
 
     else {
         $.ajax({
-            url: '/starter-template/form-handler.php',
+            url: '/starter-template/form-handler_registration.php',
             method: 'POST', //отправляем данные методом пост
             data: {
                 login: login,
@@ -41,3 +41,45 @@ $('#registration_button').on('click', function (e) {
         });
     }
 });
+
+$('#avtorization_button').on('click', function (e) {
+
+    var login = $('input[name=inputEmail3]').val();
+    var passwd = $('input[name=inputPassword3]').val();
+
+    if (login==0 || passwd==0){
+        alert("Заполните все поля!");
+    }
+
+    else if (login.length<5){
+        alert("Логин слишком короткий!");
+    }
+    else if (passwd.length<8){
+        alert("Пароль слишком короткий!");
+    }
+
+    else {
+        $.ajax({
+            url: '/starter-template/form-handler_authorization.php',
+            method: 'POST', //отправляем данные методом пост
+            data: {
+                login: login,
+                passwd : passwd
+            }
+        }).success(function (data) {//ответ от формы
+            if (data == 1) {
+                alert ('Вы успешно авторизировались');
+                $("#avtor_form").trigger('reset');
+            }
+            else if (data == 0 ){
+                alert ("Такого пользователя нет!");
+                $("#avtor_form").trigger('reset');
+            }
+            else {
+                alert ("Пароль неверный!");
+
+            }
+        });
+    }
+});
+
