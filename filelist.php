@@ -1,3 +1,6 @@
+<?php
+require_once ("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,8 +45,8 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">Авторизация</a></li>
             <li><a href="reg.html">Регистрация</a></li>
-            <li><a href="list.html">Список пользователей</a></li>
-            <li><a href="filelist.html">Список файлов</a></li>
+            <li><a href="list.php">Список пользователей</a></li>
+            <li><a href="filelist.php">Список файлов</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -51,6 +54,12 @@
 
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
+      <?php
+
+        if(isset($_SESSION['userid']))    {
+            echo "пользователь авторизован";
+        }
+        ?>
       <h2>Информация выводится из списка файлов</h2>
       <table class="table table-bordered">
         <tr>
