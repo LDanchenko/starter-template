@@ -2,7 +2,7 @@
 require_once('config.php');
 $login = $_POST['login'];
 $passwd = $_POST['passwd'];
-
+$exist = 0;
 //узнаем есть ли в базе пользователь с таким логином
 $stmt = $mysqli->stmt_init(); //начало подготовки запроса
 $stmt->prepare('SELECT * FROM users WHERE login = ?'); //подготовка запроса
@@ -17,9 +17,11 @@ if (count($data) == 0) {
     $stmt->prepare('INSERT INTO users (login, password) 
     VALUES ("' . $login . '", "' . $passwd . '")'); //подготовка запроса а
     $stmt->execute();//выполняем
-    echo "<script>alert(\"Вы успешно зарегистрированы на сайте! Теперь авторизируйтесь\");</script>";
+    $exist = 0;
+    echo $exist;
 }
 //если такой пользователь уже есть
 else {
-    echo "<script>alert(\"Логин занят!Выберите другой!\");</script>";
+    $exist = 1;
+    echo $exist;
 }

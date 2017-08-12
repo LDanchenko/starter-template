@@ -29,12 +29,15 @@ $('#registration_button').on('click', function (e) {
                 login: login,
                 passwd : passwd
             }
-        }).done(function (data) {
-            $("#registr_form").trigger('reset');
+        }).success(function (data) {//ответ от формы
+            if (data == 1) {
+                alert ('Такой пользователь уже есть, пожалуйста, выберите другой логин');
+                $("#registr_form").trigger('reset');
+            }
+            else {
+                alert ("Вы успешно зарегистрировались, тепер нужно авторизироваться");
+                $("#registr_form").trigger('reset');
+            }
         });
-
-        //очистили форму
-
     }
-
 });
