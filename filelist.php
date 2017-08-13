@@ -83,7 +83,7 @@ require_once ("config.php");
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main3.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
   </body>

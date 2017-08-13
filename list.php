@@ -1,3 +1,6 @@
+<?php
+require_once ("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,8 +45,8 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">Авторизация</a></li>
             <li><a href="reg.html">Регистрация</a></li>
-            <li><a href="list.html">Список пользователей</a></li>
-            <li><a href="filelist.html">Список файлов</a></li>
+            <li><a href="list.php">Список пользователей</a></li>
+            <li><a href="filelist.php">Список файлов</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -51,8 +54,21 @@
 
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
+        <?php
+
+        if(isset($_SESSION['userid']))    {
+            echo "пользователь авторизован";
+        }
+        $stmt = $mysqli->stmt_init(); //начало подготовки запроса
+        $stmt->prepare('SELECT users.login, users.name, users.age, users.description, users.photo
+ FROM users'); //подготовка запроса
+        $stmt->bind_param('s', $login);//указываем параметры запроса
+        $stmt->execute();//выполняем
+        $result = $stmt->get_result();
+        $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
+        ?>
       <h2>Информация выводится из базы данных</h2>
-      <table class="table table-bordered">
+      <table class="table table-bordered" id = "2">
         <tr>
           <th>Пользователь(логин)</th>
           <th>Имя</th>
@@ -61,26 +77,34 @@
           <th>Фотография</th>
           <th>Действия</th>
         </tr>
-        <tr>
-          <td>vasya99</td>
-          <td>Вася</td>
-          <td>14</td>
-          <td>Эксперт в спорах в интернете</td>
-          <td><img src="http://lorempixel.com/people/200/200/" alt=""></td>
-          <td>
-            <a href="">Удалить пользователя</a>
-          </td>
-        </tr>
+          <?php
+
+          foreach($data as $arr => $massiv)
+          {
+              echo '<tr>';
+              foreach($massiv  as  $inner_key => $value)
+              {
+
+                  echo '<th>' . $value . '</th>';
+              }
+              echo '<th>';
+              echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
+              echo ' </th>';
+              echo '</tr>';
+          }
+
+          ?>
+
+
       </table>
 
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main3.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
   </body>

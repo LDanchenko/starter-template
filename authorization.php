@@ -16,7 +16,6 @@ $hash = str_replace("\n","",$ps);
 if (count($data) == 1) {
 
     if (password_verify($passwd, $hash)) {
-        session_start();//запустили сессию
         $_SESSION['userid'] =$data[0]['id'];//сохраняем айди пользователя в сессию
         $exist = 1;//пароль прошел
 
