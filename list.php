@@ -56,16 +56,15 @@ require_once ("config.php");
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
         <?php
 
-        if(isset($_SESSION['userid']))    {
+        if(isset($_SESSION['userid'])) {
+            $stmt = $mysqli->stmt_init(); //начало подготовки запроса
+            $stmt->prepare('SELECT users.login, users.username, users.age, users.description, users.photo
+ FROM users'); //подготовка запроса
+            $stmt->execute();//выполняем
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
             echo "пользователь авторизован";
         }
-        $stmt = $mysqli->stmt_init(); //начало подготовки запроса
-        $stmt->prepare('SELECT users.login, users.name, users.age, users.description, users.photo
- FROM users'); //подготовка запроса
-        $stmt->bind_param('s', $login);//указываем параметры запроса
-        $stmt->execute();//выполняем
-        $result = $stmt->get_result();
-        $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
         ?>
       <h2>Информация выводится из базы данных</h2>
       <table class="table table-bordered" id = "2">
@@ -78,19 +77,18 @@ require_once ("config.php");
           <th>Действия</th>
         </tr>
           <?php
+          if(isset($_SESSION['userid'])) {
+              foreach ($data as $arr => $massiv) {
+                  echo '<tr>';
+                  foreach ($massiv as $inner_key => $value) {
 
-          foreach($data as $arr => $massiv)
-          {
-              echo '<tr>';
-              foreach($massiv  as  $inner_key => $value)
-              {
-
-                  echo '<th>' . $value . '</th>';
+                      echo '<th>' . $value . '</th>';
+                  }
+                  echo '<th>';
+                  echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
+                  echo ' </th>';
+                  echo '</tr>';
               }
-              echo '<th>';
-              echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
-              echo ' </th>';
-              echo '</tr>';
           }
 
           ?>
@@ -98,14 +96,51 @@ require_once ("config.php");
 
       </table>
 
-    </div><!-- /.container -->
+        <div class="col-sm-offset-2 col-sm-10">
 
+            <br>
+            Расскажите о себе
+            <br><br>
+        </div>
+
+    <form class="form-horizontal" action="" id="information_form" action="" onsubmit="return false;">
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">Имя</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="username" id="username" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">День рождения</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name="birthday" id="birthday" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label  class="col-sm-2 control-label">Описание</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="description" id="description" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" id="save" class="btn btn-default">Сохранить</button>
+
+            </div>
+        </div>
+    </form>
+
+    </div><!-- /.container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/main3.js"></script>
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
+    <script>
+        webshims.setOptions('forms-ext', {types: 'date'});
+        webshims.polyfill('forms forms-ext');
+    </script>
   </body>
 </html>

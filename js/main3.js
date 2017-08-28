@@ -1,4 +1,4 @@
-
+//удаление пользователя
 function reroute(el) {
     var name = $(el).closest('tr').find('th:first').text();
     $.ajax({
@@ -13,7 +13,7 @@ function reroute(el) {
         location.reload();
     });
 }
-
+//регистрация
 
 $('#registration_button').on('click', function (e) {
 
@@ -57,7 +57,7 @@ $('#registration_button').on('click', function (e) {
         });
     }
 });
-
+//авторизация
 $('#avtorization_button').on('click', function (e) {
 
     var login = $('input[name=inputEmail3]').val();
@@ -95,6 +95,37 @@ $('#avtorization_button').on('click', function (e) {
             else {
                 alert("Пароль неверный!");
             }
+        });
+    }
+});
+
+
+//сохранение данных о себе
+
+$('#save').on('click', function (e) {
+    var name = $('input[name=username]').val();
+    var birthday = $('input[name=birthday]').val();
+    var description = $('input[name=description]').val();
+
+    if ( name == 0 || birthday == 0 || description == 0) {
+        alert("Заполните все поля!");
+    }
+
+
+
+    else {
+        $.ajax({
+            url: '/starter-template/datasave.php',
+            method: 'POST', //отправляем данные методом пост
+            data: {
+                name: name,
+                birthday: birthday,
+                description: description
+            }
+        }).done(function (data) {//ответ от формы
+
+                alert("Пароль неверный!");
+
         });
     }
 });
