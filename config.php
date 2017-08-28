@@ -2,7 +2,7 @@
 session_start();
 $host = 'localhost';
 $dbuser = 'root';
-$dbpasswd = 'llddvvcc5678';
+$dbpasswd = '';
 $dbname = 'db1';
 $mysqli = new mysqli($host, $dbuser, $dbpasswd, $dbname);
 if ($mysqli->connect_error){ //если ошибки при подключении

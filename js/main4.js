@@ -103,28 +103,28 @@ $('#avtorization_button').on('click', function (e) {
 //сохранение данных о себе
 
 $('#save').on('click', function (e) {
-    var name = $('input[name=username]').val();
+    var username = $('input[name=username]').val();
     var birthday = $('input[name=birthday]').val();
     var description = $('input[name=description]').val();
 
-    if ( name == 0 || birthday == 0 || description == 0) {
+    if ( username == 0 || birthday == 0 || description == 0) {
         alert("Заполните все поля!");
     }
 
-
+//проверки данных
 
     else {
         $.ajax({
             url: '/starter-template/datasave.php',
             method: 'POST', //отправляем данные методом пост
             data: {
-                name: name,
+                username: username,
                 birthday: birthday,
                 description: description
             }
         }).done(function (data) {//ответ от формы
-
-                alert("Пароль неверный!");
+                //проверки
+            location.reload()
 
         });
     }
