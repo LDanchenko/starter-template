@@ -1,7 +1,7 @@
 <?php
 require_once('config.php');
-$login = $_POST['login'];
-$passwd = $_POST['passwd'];
+$login = strip_tags($_POST['login']);
+$passwd = strip_tags($_POST['passwd']);
 $exist = 0;
 //узнаем есть ли в базе пользователь с таким логином
 $stmt = $mysqli->stmt_init(); //начало подготовки запроса
@@ -11,6 +11,7 @@ $stmt->execute();//выполняем
 $result = $stmt->get_result();
 $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
 //хэшируем пароль
+//соль
 $options = [
     'cost' => 12,
 ];

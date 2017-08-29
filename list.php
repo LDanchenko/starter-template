@@ -108,7 +108,7 @@ if(isset($_SESSION['userid'])) {
             <br><br>
         </div>
 
-    <form class="form-horizontal" action="" id="information_form" action="" onsubmit="return false;">
+    <form class="form-horizontal"   name="uploader"  action="" method="post" onsubmit="return false;">
         <div class="form-group">
             <label  class="col-sm-2 control-label">Имя</label>
             <div class="col-sm-10">
@@ -127,6 +127,12 @@ if(isset($_SESSION['userid'])) {
                 <input type="text" class="form-control" name="description" id="description" >
             </div>
         </div>
+         <div class="form-group">
+            <label  class="col-sm-2 control-label">Фото</label>
+            
+                <input name="userfile" type="file" />
+            
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" id="save" class="btn btn-default">Сохранить</button>
@@ -136,6 +142,7 @@ if(isset($_SESSION['userid'])) {
     </form>';
 }
     ?>
+
     </div><!-- /.container -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
