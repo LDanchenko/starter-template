@@ -81,8 +81,14 @@ require_once ("config.php");
               foreach ($data as $arr => $massiv) {
                   echo '<tr>';
                   foreach ($massiv as $inner_key => $value) {
-
-                      echo '<th>' . $value . '</th>';
+                      //этот кусок кода под вопросом
+                        if (preg_match('/uploads/', $value)){
+                            echo "<th><img src='$value' /></th>\n";
+                        }
+                        else {
+                            //этот кусок кода под вопросом
+                            echo '<th>' . $value . '</th>';
+                        }
                   }
                   echo '<th>';
                   echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
@@ -130,7 +136,7 @@ if(isset($_SESSION['userid'])) {
          <div class="form-group">
             <label  class="col-sm-2 control-label">Фото</label>
             
-                <input name="userfile" type="file" />
+                <input name="userfile" id="userfile" type="file" />
             
         </div>
         <div class="form-group">

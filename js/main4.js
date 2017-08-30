@@ -103,33 +103,45 @@ $('#avtorization_button').on('click', function (e) {
 
 
     $("form[name='uploader']").submit(function(e) {
-    var formData = new FormData($(this)[0]);
-    var username = $('input[name=username]').val();
-    var birthday = $('input[name=birthday]').val();
-    var description = $('input[name=description]').val();
-    if ( username == 0 || birthday == 0 || description == 0) {
+    var formData = new FormData($(this)[0]); //все данные из формы
+
+    if ( username == 0 || birthday == 0 || description == 0 ) {
         alert("Заполните все поля!");
     }
 
-    $.ajax({
-        url: '/starter-template/datasave.php',
-        type: "POST",
-        data: formData,
-        async: false,
-        success: function (msg) {
-            location.reload();
+        else if( document.getElementById("userfile").files.length == 0 ){ // проверяем инпут с картинкой на пустоту
+            alert("Вы забыли загрузить картинку!");
+        }
+    else {
 
-        },
-        error: function(msg) {
-            alert('Ошибка!');
-        },
-        cache: false,
-        contentType: false,
-        processData: false
-    });
-    e.preventDefault();
-
-
+        $.ajax({
+            url: '/starter-template/datasave.php',
+            type: "POST",
+            data: formData,
+            async: false,
+            success: function (msg) {
+               // alert(msg);
+                if (msg == 1 ){
+                    alert ("Картинка корректна и была успешно загружена");//сделать по всем данным
+                    location.reload();
+                }
+                if (msg == 2 ){
+                    alert ("Картинка не загружена");//сделать по всем данным
+                }
+                if (msg == 0 ){
+                    alert ("Картинка не загружена, попробуйте другой формат");//сделать по всем данным
+                }
+            },
+            error: function (msg) {
+                alert("Произошла ошибка!");
+               // location.reload();
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+        e.preventDefault();
+    }
 
 
 
