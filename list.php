@@ -83,7 +83,7 @@ require_once ("config.php");
                   foreach ($massiv as $inner_key => $value) {
                       //этот кусок кода под вопросом
                         if (preg_match('/uploads/', $value)){
-                            echo "<th><img src='$value' /></th>\n";
+                            echo "<th><img src='$value' width='250' height='150'/></th>\n";
                         }
                         else {
                             //этот кусок кода под вопросом

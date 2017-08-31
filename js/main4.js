@@ -13,6 +13,21 @@ function reroute(el) {
         location.reload();
     });
 }
+//удаление фото пользователя
+function deleteUserPhoto(el){
+    var photo = $(el).closest('tr').find('th:first').text(); //первый th
+    $.ajax({
+        url: '/starter-template/photo_delete.php',
+        method: 'POST', //отправляем данные методом пост
+        data: {
+            photo: photo
+        }
+    }).done(function (data) {//ответ от формы
+        //  var answer = JSON.parse(data);
+        // console.log(answer);
+        location.reload();
+    });
+}
 //регистрация
 
 $('#registration_button').on('click', function (e) {
