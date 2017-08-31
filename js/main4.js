@@ -10,7 +10,7 @@ function reroute(el) {
     }).done(function (data) {//ответ от формы
       //  var answer = JSON.parse(data);
        // console.log(answer);
-        location.reload();
+      //  location.reload();
     });
 }
 //удаление фото пользователя
@@ -118,11 +118,15 @@ $('#avtorization_button').on('click', function (e) {
 
 
     $("form[name='uploader']").submit(function(e) {
-    var formData = new FormData($(this)[0]); //все данные из формы
+        var formData = new FormData($(this)[0]); //все данные из формы
+        var username = $('input[name=username]').val();
+        var birthday = $('input[name=birthday]').val();
+        var description = $('input[name=description]').val();
 
-    if ( username == 0 || birthday == 0 || description == 0 ) {
-        alert("Заполните все поля!");
-    }
+        if (username == 0 || birthday == 0 || description == 0) {
+            alert("Заполните все поля!");
+        }
+
 
         else if( document.getElementById("userfile").files.length == 0 ){ // проверяем инпут с картинкой на пустоту
             alert("Вы забыли загрузить картинку!");
