@@ -1,3 +1,6 @@
+<?php
+require_once ("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,8 +43,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Авторизация</a></li>
-            <li><a href="reg.html">Регистрация</a></li>
+            <li class="active"><a href="index.php">Авторизация</a></li>
+            <li><a href="reg.php">Регистрация</a></li>
             <li><a href="list.php">Список пользователей</a></li>
             <li><a href="filelist.php">Список файлов</a></li>
           </ul>
@@ -50,7 +53,9 @@
     </nav>
 
     <div class="container">
-
+        <?php
+        if(!isset($_SESSION['userid'])) {
+            echo '
       <div class="form-container">
         <form class="form-horizontal" id="registr_form" action="" onsubmit="return false;">
           <div class="form-group">
@@ -75,11 +80,21 @@
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-default" id="registration_button">Зарегистрироваться</button>
               <br><br>
-              Зарегистрированы? <a href="index.html">Авторизируйтесь</a>
+              Зарегистрированы? <a href="index.php">Авторизируйтесь</a>
             </div>
           </div>
         </form>
-      </div>
+      </div>';
+}
+        else {
+            echo '<form name="form" action="exit.php" method = "post">';
+            echo '<h2>';
+            echo 'Вы уже авторизировались!';
+            echo '</h2>';
+            echo '<button type="submit" id="exit_button" class="btn btn-default">Выход</button>';
+            echo '</form>';
+        }
+        ?>
 
     </div><!-- /.container -->
 

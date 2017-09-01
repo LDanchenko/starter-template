@@ -1,3 +1,6 @@
+<?php
+require_once ("config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,10 +28,14 @@
     <![endif]-->
   </head>
 
+
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
+
+
+
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -40,8 +47,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Авторизация</a></li>
-            <li><a href="reg.html">Регистрация</a></li>
+            <li class="active"><a href="index.php">Авторизация</a></li>
+            <li><a href="reg.php">Регистрация</a></li>
             <li><a href="list.php">Список пользователей</a></li>
             <li><a href="filelist.php">Список файлов</a></li>
           </ul>
@@ -49,8 +56,13 @@
       </div>
     </nav>
 
-    <div class="container">
 
+ <div class="container">
+
+     <?php
+if(!isset($_SESSION['userid'])) {
+    echo '
+         
       <div class="form-container">
         <form class="form-horizontal" action="" id="avtor_form" action="" onsubmit="return false;">
           <div class="form-group">
@@ -69,13 +81,23 @@
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" id="avtorization_button" class="btn btn-default">Войти</button>
               <br><br>
-              Нет аккаунта? <a href="reg.html">Зарегистрируйтесь</a>
+              Нет аккаунта? <a href="reg.php">Зарегистрируйтесь</a>
             </div>
           </div>
         </form>
-      </div>
+      </div>  ';
+}
+else {
+   echo '<form name="form" action="exit.php" method = "post">';
+    echo '<h2>';
+    echo 'Вы уже авторизировались!';
+    echo '</h2>';
+    echo '<button type="submit" id="exit_button" class="btn btn-default">Выход</button>';
+    echo '</form>';
+}
+    ?>
+       </div><!-- /.container -->
 
-    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript

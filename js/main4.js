@@ -10,7 +10,7 @@ function reroute(el) {
     }).done(function (data) {//ответ от формы
       //  var answer = JSON.parse(data);
        // console.log(answer);
-      //  location.reload();
+        location.reload();
     });
 }
 //удаление фото пользователя
@@ -100,8 +100,9 @@ $('#avtorization_button').on('click', function (e) {
         }).done(function (data) {//ответ от формы
             var answer = JSON.parse(data);
             if (answer == 1) {
-                alert('Вы успешно авторизировались');
+              //  alert('Вы успешно авторизировались');
                 $("#avtor_form").trigger('reset');
+                location.reload();
             }
             else if (answer == 0) {
                 alert("Такого пользователя нет!");
@@ -165,3 +166,5 @@ $('#avtorization_button').on('click', function (e) {
 
 
 });
+
+

@@ -11,12 +11,8 @@ $stmt->execute();//выполняем
 $result = $stmt->get_result();
 $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
 //хэшируем пароль
-//соль
-$options = [
-    'cost' => 12,
-];
-$pass = password_hash($passwd, PASSWORD_BCRYPT, $options)."\n";
 
+$pass = crypt($passwd, '$2a$10$1qAz2wSx3eDc4rFv5tGb5t');
 //если логин свободен - регистрация
 
 if (count($data) == 0) {
