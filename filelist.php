@@ -1,5 +1,5 @@
 <?php
-require_once ("config.php");
+require_once("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,17 +54,17 @@ require_once ("config.php");
 
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
-      <?php
+        <?php
 
-      if(isset($_SESSION['userid'])) {
-          $stmt = $mysqli->stmt_init(); //начало подготовки запроса
-          $stmt->prepare('SELECT  users.photo FROM users'); //подготовка запроса
-          $stmt->execute();//выполняем
-          $result = $stmt->get_result();
-          $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
-          echo "пользователь авторизован";
-      }
-      ?>
+        if (isset($_SESSION['userid'])) {
+            $stmt = $mysqli->stmt_init(); //начало подготовки запроса
+            $stmt->prepare('SELECT  users.photo FROM users'); //подготовка запроса
+            $stmt->execute();//выполняем
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
+            echo "пользователь авторизован";
+        }
+        ?>
 
       <h2>Информация выводится из списка файлов</h2>
       <table class="table table-bordered">
@@ -73,29 +73,24 @@ require_once ("config.php");
           <th>Фотография</th>
           <th>Действия</th>
         </tr>
-          <?php
-          if(isset($_SESSION['userid'])) {
-              foreach ($data as $arr => $massiv) {
-                  echo '<tr>';
-
-                  foreach ($massiv as $inner_key => $value) {
-                      if (isset($value)) {
-                          $imageName = str_replace("./uploads/","",$value);
-                      echo '<th>' . $imageName. '</th>';
-
-                          echo "<th><img src='$value' width='250' height='150'/></th>\n";
-
-                          echo '<th>';
-                          echo '<button class="btn btn-default" onclick="deleteUserPhoto(this)">Удалить фото</button>';
-                          echo ' </th>';
-                      }
-                  }
-                  echo '</tr>';
-              }
-              }
-
-
-          ?>
+            <?php
+            if (isset($_SESSION['userid'])) {
+                foreach ($data as $arr => $massiv) {
+                    echo '<tr>';
+                    foreach ($massiv as $inner_key => $value) {
+                        if (isset($value)) {
+                            $imageName = str_replace("./uploads/", "", $value);
+                            echo '<th>' . $imageName. '</th>';
+                            echo "<th><img src='$value' width='250' height='150'/></th>\n";
+                            echo '<th>';
+                            echo '<button class="btn btn-default" onclick="deleteUserPhoto(this)">Удалить фото</button>';
+                            echo ' </th>';
+                        }
+                    }
+                    echo '</tr>';
+                }
+            }
+            ?>
       </table>
 
     </div><!-- /.container -->
@@ -105,7 +100,7 @@ require_once ("config.php");
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main4.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
   </body>

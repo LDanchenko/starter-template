@@ -2,9 +2,8 @@
 
 require_once('config.php');
 $photo = $_POST['photo'];
-$photo_r = str_replace("<th>","",$photo);
-$path =  str_replace("</th>","",$photo_r);
-
+$photo_r = str_replace("<th>", "", $photo);
+$path =  str_replace("</th>", "", $photo_r);
 
 $patterns = array();
 $patterns[0] = '/.jpg/';

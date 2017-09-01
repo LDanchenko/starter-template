@@ -1,5 +1,5 @@
 <?php
-require_once ("config.php");
+require_once("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +55,7 @@ require_once ("config.php");
     <div class="container">
     <h1>Запретная зона, доступ только авторизированному пользователю</h1>
         <?php
-
-        if(isset($_SESSION['userid'])) {
+        if (isset($_SESSION['userid'])) {
             $stmt = $mysqli->stmt_init(); //начало подготовки запроса
             $stmt->prepare('SELECT users.login, users.username, users.age, users.description, users.photo
  FROM users'); //подготовка запроса
@@ -76,36 +75,33 @@ require_once ("config.php");
           <th>Фотография</th>
           <th>Действия</th>
         </tr>
-          <?php
-          if(isset($_SESSION['userid'])) {
-              foreach ($data as $arr => $massiv) {
-                  echo '<tr>';
-                  foreach ($massiv as $inner_key => $value) {
-                      //этот кусок кода под вопросом
-                        if (preg_match('/uploads/', $value)){
+            <?php
+            if (isset($_SESSION['userid'])) {
+                foreach ($data as $arr => $massiv) {
+                    echo '<tr>';
+                    foreach ($massiv as $inner_key => $value) {
+                        //этот кусок кода под вопросом
+                        if (preg_match('/uploads/', $value)) {
                             echo "<th><img src='$value' width='250' height='150'/></th>\n";
-                        }
-                        else {
+                        } else {
                             //этот кусок кода под вопросом
                             echo '<th>' . $value . '</th>';
                         }
-                  }
-                  echo '<th>';
-                  echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
-                  echo ' </th>';
-                  echo '</tr>';
-              }
-          }
-
-          ?>
+                    }
+                    echo '<th>';
+                    echo '<button class="btn btn-default" onclick="reroute(this)">Удалить пользователя</button>';
+                    echo ' </th>';
+                    echo '</tr>';
+                }
+            }
+            ?>
 
 
       </table>
 <?php
 
-if(isset($_SESSION['userid'])) {
+if (isset($_SESSION['userid'])) {
     echo '
-
 
         <div class="col-sm-offset-2 col-sm-10">
 
@@ -154,7 +150,7 @@ if(isset($_SESSION['userid'])) {
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main4.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/webshim/1.14.5/polyfiller.js"></script>
     <script>

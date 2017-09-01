@@ -37,9 +37,3 @@ else
 }
 echo $out;
 
-
-//пишем данные в бд
-
-//$data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
-
-//echo json_encode($exist);

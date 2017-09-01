@@ -54,7 +54,7 @@ require_once ("config.php");
 
     <div class="container">
         <?php
-        if(!isset($_SESSION['userid'])) {
+        if (!isset($_SESSION['userid'])) {
             echo '
       <div class="form-container">
         <form class="form-horizontal" id="registr_form" action="" onsubmit="return false;">
@@ -85,8 +85,7 @@ require_once ("config.php");
           </div>
         </form>
       </div>';
-}
-        else {
+        } else {
             echo '<form name="form" action="exit.php" method = "post">';
             echo '<h2>';
             echo 'Вы уже авторизировались!';
@@ -103,7 +102,7 @@ require_once ("config.php");
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main4.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
   </body>

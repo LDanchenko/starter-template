@@ -1,5 +1,5 @@
 <?php
-require_once ("config.php");
+require_once("config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +59,9 @@ require_once ("config.php");
 
  <div class="container">
 
-     <?php
-if(!isset($_SESSION['userid'])) {
-    echo '
-         
+    <?php
+    if (!isset($_SESSION['userid'])) {
+        echo '         
       <div class="form-container">
         <form class="form-horizontal" action="" id="avtor_form" action="" onsubmit="return false;">
           <div class="form-group">
@@ -86,15 +85,14 @@ if(!isset($_SESSION['userid'])) {
           </div>
         </form>
       </div>  ';
-}
-else {
-   echo '<form name="form" action="exit.php" method = "post">';
-    echo '<h2>';
-    echo 'Вы уже авторизировались!';
-    echo '</h2>';
-    echo '<button type="submit" id="exit_button" class="btn btn-default">Выход</button>';
-    echo '</form>';
-}
+    } else {
+        echo '<form name="form" action="exit.php" method = "post">';
+        echo '<h2>';
+        echo 'Вы уже авторизировались!';
+        echo '</h2>';
+        echo '<button type="submit" id="exit_button" class="btn btn-default">Выход</button>';
+        echo '</form>';
+    }
     ?>
        </div><!-- /.container -->
 
@@ -104,7 +102,7 @@ else {
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/main4.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
   </body>
