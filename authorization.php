@@ -14,11 +14,9 @@ if (count($data) == 1) {
     $ps = $data[0]['password'];//из массива взяли пароль
     $hash = str_replace("\n", "", $ps); //убрать перенос строк
 //если такой пользователь есть
-
     if (hash_equals($hash, crypt($passwd, '$2a$10$1qAz2wSx3eDc4rFv5tGb5t'))) {
         $_SESSION['userid'] =$data[0]['id'];//сохраняем айди пользователя в сессию
         $exist = 1;//пароль прошел
-
     } else {
         $exist = 2; //пароль не подошел
     }

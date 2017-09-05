@@ -2,14 +2,14 @@
 function reroute(el) {
     var name = $(el).closest('tr').find('th:first').text();
     $.ajax({
-        url: '/starter-template/user_delete.php',
+        url: '/user_delete.php',
         method: 'POST', //отправляем данные методом пост
         data: {
             login: name
         }
     }).done(function (data) {//ответ от формы
-      //  var answer = JSON.parse(data);
-       // console.log(answer);
+        //  var answer = JSON.parse(data);
+        // console.log(answer);
         location.reload();
     });
 }
@@ -17,7 +17,7 @@ function reroute(el) {
 function deleteUserPhoto(el){
     var photo = $(el).closest('tr').find('th:first').text(); //первый th
     $.ajax({
-        url: '/starter-template/photo_delete.php',
+        url: '/photo_delete.php',
         method: 'POST', //отправляем данные методом пост
         data: {
             photo: photo
@@ -53,7 +53,7 @@ $('#registration_button').on('click', function (e) {
 
     else {
         $.ajax({
-            url: '/starter-template/registration.php',
+            url: '/registration.php',
             method: 'POST', //отправляем данные методом пост
             data: {
                 login: login,
@@ -91,7 +91,7 @@ $('#avtorization_button').on('click', function (e) {
 
     else {
         $.ajax({
-            url: '/starter-template/authorization.php',
+            url: '/authorization.php',
             method: 'POST', //отправляем данные методом пост
             data: {
                 login: login,
@@ -100,7 +100,7 @@ $('#avtorization_button').on('click', function (e) {
         }).done(function (data) {//ответ от формы
             var answer = JSON.parse(data);
             if (answer == 1) {
-              //  alert('Вы успешно авторизировались');
+                //  alert('Вы успешно авторизировались');
                 $("#avtor_form").trigger('reset');
                 location.reload();
             }
@@ -118,29 +118,29 @@ $('#avtorization_button').on('click', function (e) {
 //сохранение данных о себе
 
 
-    $("form[name='uploader']").submit(function(e) {
-        var formData = new FormData($(this)[0]); //все данные из формы
-        var username = $('input[name=username]').val();
-        var birthday = $('input[name=birthday]').val();
-        var description = $('input[name=description]').val();
+$("form[name='uploader']").submit(function(e) {
+    var formData = new FormData($(this)[0]); //все данные из формы
+    var username = $('input[name=username]').val();
+    var birthday = $('input[name=birthday]').val();
+    var description = $('input[name=description]').val();
 
-        if (username == 0 || birthday == 0 || description == 0) {
-            alert("Заполните все поля!");
-        }
+    if (username == 0 || birthday == 0 || description == 0) {
+        alert("Заполните все поля!");
+    }
 
 
-        else if( document.getElementById("userfile").files.length == 0 ){ // проверяем инпут с картинкой на пустоту
-            alert("Вы забыли загрузить картинку!");
-        }
+    else if( document.getElementById("userfile").files.length == 0 ){ // проверяем инпут с картинкой на пустоту
+        alert("Вы забыли загрузить картинку!");
+    }
     else {
 
         $.ajax({
-            url: '/starter-template/datasave.php',
+            url: '/datasave.php',
             type: "POST",
             data: formData,
             async: false,
             success: function (msg) {
-               // alert(msg);
+                // alert(msg);
                 if (msg == 1 ){
                     alert ("Картинка корректна и была успешно загружена");//сделать по всем данным
                     location.reload();
@@ -154,7 +154,7 @@ $('#avtorization_button').on('click', function (e) {
             },
             error: function (msg) {
                 alert("Произошла ошибка!");
-               // location.reload();
+                // location.reload();
             },
             cache: false,
             contentType: false,
@@ -166,5 +166,3 @@ $('#avtorization_button').on('click', function (e) {
 
 
 });
-
-
