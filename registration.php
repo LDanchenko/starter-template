@@ -1,5 +1,6 @@
 <?php
 require_once('config.php');
+require_once ('mailer.php');
 $login = strip_tags($_POST['login']);
 $passwd = strip_tags($_POST['passwd']);
 $exist = 0;
@@ -18,9 +19,8 @@ if (count($data) == 0) {
     $stmt->prepare('INSERT INTO users (login, password)  VALUES ("' . $login . '", "' . $pass . '")'); //подготовка запроса а
     $stmt->execute();//выполняем
     $exist = 0;
-}
-//если такой пользователь уже есть
-else {
+    send($login);//отправляем письмо
+} else {
     $exist = 1;
 }
 echo json_encode($exist);

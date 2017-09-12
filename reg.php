@@ -58,7 +58,7 @@ require_once("config.php");
         <div class="form-container">
             <form class="form-horizontal" id="registr_form" action="" onsubmit="return false;">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Логин</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="inputEmail3" id="inputEmail3" placeholder="Логин">
                     </div>

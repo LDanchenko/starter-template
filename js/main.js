@@ -2,7 +2,7 @@
 function reroute(el) {
     var name = $(el).closest('tr').find('th:first').text();
     $.ajax({
-        url: '/user_delete.php',
+        url: './user_delete.php',
         method: 'POST', //отправляем данные методом пост
         data: {
             login: name
@@ -17,7 +17,7 @@ function reroute(el) {
 function deleteUserPhoto(el){
     var photo = $(el).closest('tr').find('th:first').text(); //первый th
     $.ajax({
-        url: '/photo_delete.php',
+        url: './photo_delete.php',
         method: 'POST', //отправляем данные методом пост
         data: {
             photo: photo
@@ -36,10 +36,22 @@ $('#registration_button').on('click', function (e) {
     var passwd = $('input[name=inputPassword3]').val();
     var passwd_again = $('input[name=inputPassword4]').val();
 
+
+    //проверка email
+    function isValidEmailAddress(emailAddress) {
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        return pattern.test(emailAddress);
+    }
+
+
     if (login == 0 || passwd == 0 || passwd_again == 0) {
         alert("Заполните все поля!");
     }
+    else if((!isValidEmailAddress(login)))
+    {
+        alert("Неверный email адрес!");
 
+    }
     else if (login.length < 5) {
         alert("Логин слишком короткий!");
     }
@@ -53,7 +65,7 @@ $('#registration_button').on('click', function (e) {
 
     else {
         $.ajax({
-            url: '/registration.php',
+            url: './registration.php',
             method: 'POST', //отправляем данные методом пост
             data: {
                 login: login,
@@ -65,9 +77,12 @@ $('#registration_button').on('click', function (e) {
                 alert('Такой пользователь уже есть, пожалуйста, выберите другой логин');
                 $("#registr_form").trigger('reset');
             }
-            else {
+            else if (answer == 0) {
                 alert("Вы успешно зарегистрировались, тепер нужно авторизироваться");
                 $("#registr_form").trigger('reset');
+            }
+            else {
+                alert("Письмо не отправлено, свяжитесь с администратором");
             }
         });
     }
@@ -91,7 +106,7 @@ $('#avtorization_button').on('click', function (e) {
 
     else {
         $.ajax({
-            url: '/authorization.php',
+            url: './authorization.php',
             method: 'POST', //отправляем данные методом пост
             data: {
                 login: login,
@@ -135,7 +150,7 @@ $("form[name='uploader']").submit(function(e) {
     else {
 
         $.ajax({
-            url: '/datasave.php',
+            url: './datasave.php',
             type: "POST",
             data: formData,
             async: false,
