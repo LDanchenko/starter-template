@@ -2,7 +2,8 @@
 require_once('config.php');
 $photo = $_POST['photo'];
 $photo_r = str_replace("<th>", "", $photo);
-$path =  str_replace("</th>", "", $photo_r);
+$path1=  str_replace("</th>", "", $photo_r);
+$path =  str_replace(" ", "", $path1);
 $patterns = array();
 $patterns[0] = '/.jpg/';
 $patterns[1] = '/.png/';
@@ -17,5 +18,5 @@ $stmt = $mysqli->stmt_init(); //начало подготовки запроса
 $stmt->prepare('UPDATE users SET users.photo = NULL WHERE id = ?');
 $stmt->bind_param('i', $user_id);//указываем параметры запроса
 $stmt->execute();//выполняем
-unlink('./uploads/' .$path);
+unlink($path);
 ?>

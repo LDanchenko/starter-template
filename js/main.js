@@ -25,7 +25,7 @@ function deleteUserPhoto(el){
     }).done(function (data) {//ответ от формы
         //  var answer = JSON.parse(data);
         // console.log(answer);
-        location.reload();
+      //  location.reload();
     });
 }
 //регистрация

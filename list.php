@@ -13,8 +13,8 @@ $stmt->prepare('SELECT users.login, users.username, users.age, users.description
     FROM users'); //подготовка запроса
 $stmt->execute();//выполняем
 $result = $stmt->get_result();
-$data1 = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
-$data = array('text' => 'first', 'text2' => 'second');
+$data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
+
 
 function isImage($value)
 {
@@ -27,7 +27,7 @@ else {
 }
 
 
-echo $twig->render('list.html', array('session' => isset($_SESSION['userid']), 'data' => $data1));
+echo $twig->render('list.html', array('session' => isset($_SESSION['userid']), 'data' => $data));
 ?>
 
 
