@@ -1,7 +1,7 @@
 <?php
 require_once("config.php");
 require_once("vendor/autoload.php");
-
+use Intervention\Image\ImageManager;
 $loader = new Twig_Loader_Filesystem('templates');
 $twig = new Twig_Environment($loader, array(
     'auto_reload' => true
@@ -15,16 +15,17 @@ $result = $stmt->get_result();
 $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
 
 
-function isImage($value)
-{
-    if (preg_match('/uploads/', $value)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
+/*//все картинки меняем
+// create an image manager instance with favored driver
+$manager = new ImageManager(array('driver' => 'imagick'));
 
+
+// create Image from file
+$img = Image::make('public/foo.jpg');
+
+// rotate image 45 degrees clockwise
+$img->rotate(-45);
+*/
 
 echo $twig->render('filelist.html', array('session' => isset($_SESSION['userid']), 'data' => $data));
 ?>

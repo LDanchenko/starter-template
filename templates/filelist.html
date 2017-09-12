@@ -64,7 +64,7 @@
         {% for key, value in data %}
         {% for key1, value1 in value %}
         {%    if (('/uploads/' in value1)==true) %}
-        <th>  {{ value1 }} </th>
+        <th>  {{ value1[10:] }} </th>
         <th><img src='{{ value1 }}' width='250' height='150'/></th>
         <th><button class="btn btn-default" onclick="deleteUserPhoto(this)">Удалить фото</button></th>
         {% endif %}

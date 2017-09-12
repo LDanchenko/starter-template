@@ -16,17 +16,6 @@ $result = $stmt->get_result();
 $data = $result->fetch_all(MYSQLI_ASSOC); //для получения асоциативного массива
 
 
-function isImage($value)
-{
-    if (preg_match('/uploads/', $value)) {
-        return true;
-}
-else {
-        return false;
-}
-}
-
-
 echo $twig->render('list.html', array('session' => isset($_SESSION['userid']), 'data' => $data));
 ?>
 
