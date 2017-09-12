@@ -8,7 +8,7 @@ function send($login)
     $mail = new PHPMailer(true);
     try {
         //Server settings
-        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+      //  $mail->SMTPDebug = 2;                                 // Enable verbose debug output
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp.yandex.ua';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -35,7 +35,7 @@ function send($login)
 
 
         $mail->send();
-        echo 'Message has been sent';
+       // echo 'Message has been sent';
     } catch (Exception $e) {
         echo 'Message could not be sent.';
         echo 'Mailer Error: ' . $mail->ErrorInfo;

@@ -77,6 +77,7 @@ require_once("config.php");
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
+                        <div class="g-recaptcha" data-sitekey="6LczSDAUAAAAACooYEKQrWk_pV_aUcYEjSruDuwc"></div>
                         <button type="submit" class="btn btn-default" id="registration_button">Зарегистрироваться</button>
                         <br><br>
                         Зарегистрированы? <a href="index.php">Авторизируйтесь</a>
@@ -102,6 +103,6 @@ require_once("config.php");
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/bootstrap.min.js"></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

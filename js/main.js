@@ -82,7 +82,7 @@ $('#registration_button').on('click', function (e) {
                 $("#registr_form").trigger('reset');
             }
             else {
-                alert("Письмо не отправлено, свяжитесь с администратором");
+                alert("Произошла ошибка, свяжитесь с администратором");
             }
         });
     }

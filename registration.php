@@ -18,9 +18,11 @@ if (count($data) == 0) {
     $stmt = $mysqli->stmt_init(); //начало подготовки запроса
     $stmt->prepare('INSERT INTO users (login, password)  VALUES ("' . $login . '", "' . $pass . '")'); //подготовка запроса а
     $stmt->execute();//выполняем
-    $exist = 0;
-    send($login);//отправляем письмо
-} else {
+    send($login);//тут проверка
+        $exist = 0;
+}
+//если такой пользователь уже есть
+else {
     $exist = 1;
 }
 echo json_encode($exist);
