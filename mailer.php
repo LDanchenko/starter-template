@@ -12,15 +12,15 @@ function send($login)
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp.yandex.ua';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'l-u-b-o-v2@yandex.ua';                 // SMTP username
-        $mail->Password = 'llddvvcc5678';                           // SMTP password
+        $mail->Username = *********;                 // SMTP username
+        $mail->Password = '*******8';                           // SMTP password
         $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 465;                                    // TCP port to connect to
 
         $mail->CharSet = "UTF-8";
 
         //Recipients
-        $mail->setFrom('l-u-b-o-v2@yandex.ua', 'Администратор');
+        $mail->setFrom(********88', 'Администратор');
         $mail->addAddress($login);     // Add a recipient
 
 
